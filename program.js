@@ -149,11 +149,50 @@
                         .update(new Date().toDateString() + id)
                         .digest('hex'); // encrypt date to hash1 value
                         
-        res.send(hdate); // reverse request
+        res.send(hdate); 
     });
 
     app.listen(Number(process.argv[2])); // start server on port arg    
 
  }
  
- paramm();
+ //paramm();
+ 
+ 
+ 
+
+ /*//////////////////////////////////*/
+ /* function inQuery exercise 7      */
+ /*//////////////////////////////////*/
+ 
+ 
+ function inQuery(){
+ 
+    var express = require('express'); // load express module
+    var app = express(); // initialise express app
+
+    app.get('/search', function(req, res) { // get request middleware from expressjs
+    
+        var qry = req.query; //GET /search URL route, e.g. ?results=recent&include_tabs=true
+        
+        var ob = Object.keys(qry); // get object keys
+        ob.pop(); // remove last item
+        
+
+        var jOb={}; // empty json object
+        ob.forEach( function (value,i){
+            var str = qry[value]; // object value
+            jOb[ob[i]] = str; // add to json object
+        });
+        
+        
+        res.send(JSON.stringify(jOb)); // jsonify jObject
+    });
+
+    app.listen(Number(process.argv[2])); // start server on port arg 
+ }
+ 
+ inQuery();
+ 
+
+
