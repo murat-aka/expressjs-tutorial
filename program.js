@@ -59,7 +59,6 @@
  function jadeT(){
  
     var express = require('express'); // load express module
-    var path = require("path"); // load path module
     var app = express(); // initialise express app
     app.set('view engine', 'jade'); // use jade template engine
     
@@ -74,4 +73,32 @@
  
  }
  
- jadeT();
+ //jadeT();
+ 
+ 
+ 
+ 
+ 
+ 
+ /*//////////////////////////////////*/
+ /* function oldform exercise 4      */
+ /*//////////////////////////////////*/
+ 
+ 
+ function oldForm(){
+ 
+    var express = require('express'); // load express module
+    var bodyparser = require('body-parser'); // use parser module
+
+    var app = express(); // initialise express app
+    app.use(bodyparser.urlencoded({extended: false})); // set url encode
+
+    app.post('/form', function(req, res) { // post request middleware from expressjs
+        res.send(req.body.str.split('').reverse().join('')); // reverse request
+    });
+
+    app.listen(Number(process.argv[2])); // start server on port arg
+ 
+ }
+ 
+ oldForm();
