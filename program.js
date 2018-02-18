@@ -192,7 +192,42 @@
     app.listen(Number(process.argv[2])); // start server on port arg 
  }
  
- inQuery();
+ //inQuery();
  
 
 
+ /*//////////////////////////////////*/
+ /* function fileJson exercise 8     */
+ /*//////////////////////////////////*/
+ 
+ 
+ function fJson(){
+     
+    var express = require('express'); // load express module
+    var app = express(); // initialise express app
+    
+    var port = process.argv[2]; // get the port number from args
+    var fPath = process.argv[3]; // read file path from args 
+    var fs = require('fs'); // load file system module
+
+    app.get('/books', function(req, res) { // get request middleware from expressjs
+    
+        fs.readFile(fPath, function doneReading(err, fileContents) { // readFile is asycronous so a call back function is passed.
+        
+        if(!err){
+         
+          var strString = fileContents.toString(); // convert file contents or the buffer object to string
+          res.send(JSON.stringify(JSON.parse(strString))); // jsonify string;     
+         
+        }else{
+          res.send("500");
+        }
+        
+        });
+        
+    });
+
+    app.listen(port); // start server on port arg 
+ }
+ 
+ fJson();
