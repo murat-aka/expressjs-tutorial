@@ -101,4 +101,29 @@
  
  }
  
- oldForm();
+ //oldForm();
+ 
+ 
+
+
+
+ /*//////////////////////////////////*/
+ /* function stylish exercise 5      */
+ /*//////////////////////////////////*/
+ 
+ 
+ function stylish(){
+ 
+    var express = require('express'); // load express module
+    var path = require("path"); // load path module
+    var app = express(); // initialise express app
+    
+    app.use(require('stylus').middleware(process.argv[3]||path.join(__dirname, 'public'))); // use styles
+    app.use(express.static(process.argv[3]||path.join(__dirname, 'public'))); // static page to use
+
+    app.listen(Number(process.argv[2])); // start server on port arg    
+ 
+ }
+ 
+ stylish();
+ 
