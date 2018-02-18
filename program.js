@@ -125,5 +125,35 @@
  
  }
  
- stylish();
+ //stylish();
  
+ 
+ 
+
+
+ /*//////////////////////////////////*/
+ /* function paramm exercise 6       */
+ /*//////////////////////////////////*/
+ 
+ 
+ function paramm(){
+ 
+    var express = require('express'); // load express module
+    var app = express(); // initialise express app
+
+    app.put('/message/:NAME', function(req, res) { // put request middleware from expressjs
+    
+        var id = req.params.NAME; // PUT /message/526aa677a8ceb64569c9d4fb
+        var hdate =  require('crypto')
+                        .createHash('sha1')
+                        .update(new Date().toDateString() + id)
+                        .digest('hex'); // encrypt date to hash1 value
+                        
+        res.send(hdate); // reverse request
+    });
+
+    app.listen(Number(process.argv[2])); // start server on port arg    
+
+ }
+ 
+ paramm();
