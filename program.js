@@ -45,4 +45,33 @@
  
  }
  
- sTatic();
+ //sTatic();
+ 
+ 
+ 
+ 
+ 
+ /*//////////////////////////////////*/
+ /* function jadeT exercise 3        */
+ /*//////////////////////////////////*/
+ 
+ 
+ function jadeT(){
+ 
+    var express = require('express'); // load express module
+    var path = require("path"); // load path module
+    var app = express(); // initialise express app
+    app.set('view engine', 'jade'); // use jade template engine
+    
+    
+    app.get('/home', function(req, res) { // get request middleware from expressjs
+        
+        app.set('views',process.argv[3]); // use jade template provided
+        res.render('index', {date: new Date().toDateString()}); // display date on index form
+    });
+
+    app.listen(Number(process.argv[2])); // start server on port arg
+ 
+ }
+ 
+ jadeT();
